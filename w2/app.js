@@ -3,8 +3,8 @@ console.log('Hello from app.js! Your javascript is connected and running!')
 // We use document.getElementById() to get a reference to an element by its unique ID.
 // We store these references in 'const' variables because the elements themselves won't change.
 
-const messageDisplayElement = document.getElementById("output-message")
-const updateButton = document.getElementById("update-button");
+const totalDisplay = document.getElementById("total-display")
+const addItemButton = document.getElementById("add-item-btn");
 
 // These variables will change as the user interacts with the page.
 
@@ -13,6 +13,8 @@ let clickCount = 0;
 
 // --- Part 2: Define and call handleButtonClick Function ---
 // A function is a block of code designed to perform a particular task.
+
+function handleButtonClick()
 
 {
    // clickCount = clickCount + 1;
@@ -30,14 +32,14 @@ let clickCount = 0;
         // We can even change the style of an HTML element directly with JavaScript!
         // We can even change the style of an HTML element directly with JavaScript!
         message += ' WOW, you are a super clicker!';
-        messageDisplayElement.style.color = 'purple';
+        totalDisplay.style.color = 'purple';
     } else {
-        messageDisplayElement.style.color = '#333';
+        totalDisplay.style.color = '#333';
 
     }
     // Update the text content of our paragraph element on the page
     // This is how JavaScript makes changes visible on the web page.
-    messageDisplayElement.textContent = message;
+    totalDisplay.textContent = message;
 
    console.log(`Button clicked! Current click count ${clickCount}`)
 };
@@ -48,10 +50,10 @@ document.addEventListener('DOMContentLoaded', function(){
     // The 'DOMContentLoaded' event is perfect for this. It fires when the HTML document is ready.
 
     console.log('DOM fully loaded and parsed, App is ready for interaction')
-    // Attach an event listener to our 'updateButton.
-    // When 'updateButton' receives a 'click' event, the 'handleButtonClick' function will execute.
+    // Attach an event listener to our 'addItemButton'.
+    // When 'addItemButton' receives a 'click' event, the 'handleButtonClick' function will execute.
 
-    updateButton.addEventListener('click');
+    addItemButton.addEventListener('click', handleButtonClick);
 
-    messageDisplayElement.textContent = `Welcome, ${userName}! Click the button below to start counting`
+    totalDisplay.textContent = `Welcome, ${userName}! Click the button below to start counting`
 })
