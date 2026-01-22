@@ -5,11 +5,11 @@ console.log('Hello from app.js! Your javascript is connected and running!')
 
 const totalDisplay = document.getElementById("total-display")
 const addItemButton = document.getElementById("add-item-btn");
+const itemPrice = 15;
 
 // These variables will change as the user interacts with the page.
 
-let userName = 'Preston';
-let clickCount = 0;
+let totalCost = 0;
 
 // --- Part 2: Define and call handleButtonClick Function ---
 // A function is a block of code designed to perform a particular task.
@@ -17,18 +17,18 @@ let clickCount = 0;
 function handleButtonClick()
 
 {
-   // clickCount = clickCount + 1;
-   // increase clickCount by 1 each time the button is clicked
+   // totalCost = totalCost + 1;
+   // increase totalCost by 1 each time the button is clicked
 
-   clickCount += 1;
+   totalCost += 1;
 
         // Template strings (literal) to easily combine our variables and text into one message
 
-   let message = `Hello, ${userName}! You have clicked the button ${clickCount} time(s).`;
+   let message = `Hello You have clicked the button ${totalCost} time(s).`;
 
     // This is basic decision-making in JavaScript!
-    // Use a simple 'if' statement to make our page react differently based on clickCount.
-    if (clickCount >= 5) {
+    // Use a simple 'if' statement to make our page react differently based on totalCost.
+    if (totalCost >= 5) {
         // We can even change the style of an HTML element directly with JavaScript!
         // We can even change the style of an HTML element directly with JavaScript!
         message += ' WOW, you are a super clicker!';
@@ -41,7 +41,7 @@ function handleButtonClick()
     // This is how JavaScript makes changes visible on the web page.
     totalDisplay.textContent = message;
 
-   console.log(`Button clicked! Current click count ${clickCount}`)
+   console.log(`Button clicked! Current total cost ${totalCost}`)
 };
 
 document.addEventListener('DOMContentLoaded', function(){
@@ -55,5 +55,5 @@ document.addEventListener('DOMContentLoaded', function(){
 
     addItemButton.addEventListener('click', handleButtonClick);
 
-    totalDisplay.textContent = `Welcome, ${userName}! Click the button below to start counting`
+    totalDisplay.textContent = `Welcome Click the button below to start counting`
 })
