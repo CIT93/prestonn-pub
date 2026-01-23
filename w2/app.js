@@ -20,21 +20,19 @@ function handleButtonClick()
    // totalCost = totalCost + 1;
    // increase totalCost by 1 each time the button is clicked
 
-   totalCost += 1;
+   totalCost += itemPrice;
 
-        // Template strings (literal) to easily combine our variables and text into one message
+    // Template strings (literal) to easily combine our variables and text into one message
 
-   let message = `Hello You have clicked the button ${totalCost} time(s).`;
+   let message = `Current Total: $${totalCost}`;
 
-    // This is basic decision-making in JavaScript!
     // Use a simple 'if' statement to make our page react differently based on totalCost.
-    if (totalCost >= 5) {
-        // We can even change the style of an HTML element directly with JavaScript!
-        // We can even change the style of an HTML element directly with JavaScript!
-        message += ' WOW, you are a super clicker!';
-        totalDisplay.style.color = 'purple';
+    if (totalCost >= 60) {
+        message += ' Over Budget!';
+
+        totalDisplay.style.color = 'red';
     } else {
-        totalDisplay.style.color = '#333';
+        totalDisplay.style.color = 'green';
 
     }
     // Update the text content of our paragraph element on the page
@@ -55,5 +53,5 @@ document.addEventListener('DOMContentLoaded', function(){
 
     addItemButton.addEventListener('click', handleButtonClick);
 
-    totalDisplay.textContent = `Welcome Click the button below to start counting`
+    totalDisplay.textContent = `Current Total: $${totalCost}`
 })
