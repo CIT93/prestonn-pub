@@ -1,7 +1,4 @@
 console.log('Hello from app.js! Your javascript is connected and running!')
-// --- Part 1: Select HTML Elements ----
-// We use document.getElementById() to get a reference to an element by its unique ID.
-// We store these references in 'const' variables because the elements themselves won't change.
 
 const totalDisplay = document.getElementById("total-display")
 const addItemButton = document.getElementById("add-item-btn");
@@ -11,12 +8,10 @@ const itemPrice = 15;
 
 let totalCost = 0;
 
-// --- Part 2: Define and call handleButtonClick Function ---
 // A function is a block of code designed to perform a particular task.
 
-function handleButtonClick()
+const handleButtonClick = function () {
 
-{
    // totalCost = totalCost + 1;
    // increase totalCost by 1 each time the button is clicked
 
