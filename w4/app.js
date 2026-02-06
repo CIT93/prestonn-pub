@@ -1,6 +1,6 @@
 import * as orderHandler from './order-handler.js';
 import * as priceCalculator from './price-calculator.js';
-
+import * as resultsDisplay from './results-display.js'; 
 
 const orderForm = document.getElementById('order-form');
 const summaryDiv = document.getElementById('order-summary');
