@@ -1,28 +1,34 @@
-console.log ('App.js has successfully loaded!');
-import * as orderHandler from "./order-handler.js";
+import * as orderHandler from './order-handler.js';
+import * as priceCalculator from './price-calculator.js';
 
-const orderForm = document.getElementById('order-form'); // elements selected
-const orderSummary = document.getElementById('order-summary');
 
-const handleOrderSubmit = function(event) {
+const orderForm = document.getElementById('order-form');
+const summaryDiv = document.getElementById('order-summary');
+
+const orders = []; // Empty array to store all orders
+const handleOrderSubmit = function (event) {
     event.preventDefault();
-    const orderFormSelections = orderHandler.getOrderInputs();
 
-    orderSummary.textContent = `Ordered ${orderFormSelections.qtyInputSelection} ${orderFormSelections.sizeRadioButtonsSelection} T-Shirt`;
+    const orderData = orderHandler.getFormInputs(); // form data from the handler
+    console.log(orderData);
 
-    if(orderFormSelections.qtyInputSelection > 1) {
-        orderSummary.textContent += `s`;
+    const calculatedPrice = priceCalculator.calculateTotal(orderData); // Calculate the price
+
+    
+    const newOrder = { // Marging operator uses this
+        ...orderData,
+        ...calculatedPrice,
+        timestamp: new Date().toISOString()
     };
 
-    if(orderFormSelections.giftWrapCheckboxSelection === true) {
-        orderSummary.textContent += ` with Gift Wrapping`;
-    }
-    orderSummary.textContent += '. Thank you for your purchase!';
-    console.log('Order submitted & processed.');
+    orders.push(newOrder);
+    console.log(orders);
+    resultsDisplay.displayOrder(newOrder);
+
 };
-const init = function() {
+
+const init = function () {
     orderForm.addEventListener('submit', handleOrderSubmit);
-    console.log('initialized the app');
 };
 
 document.addEventListener('DOMContentLoaded', init);

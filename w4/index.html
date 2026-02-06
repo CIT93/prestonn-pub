@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="app.js" type="module"></script>
-    <title>Order Form</title>
+    <title>The Custom Order Form</title>
+    <script type="module" src="app.js"></script>
 </head>
+
 <body>
-    <h1>Custom T-Shirt Order</h1>
+    <h1>T-Shirt Order Form </h1>
     
     <form id="order-form">
         
@@ -33,8 +31,11 @@
 
     <hr>
     
-    <div id="order-summary">
-        <p>Order Details will appear here...</p>
-    </div>
+<div id="order-summary" style="display: none;">
+    <h2>Order Success!</h2>
+    <p><strong>Total Cost:</strong> $<span id="display-total"></span></p>
+    <p><strong>Details:</strong> <span id="display-qty"></span> <span id="display-size"></span> T-Shirt(s)</p>
+    <p><strong>Gift Wrap:</strong> <span id="display-gift"></span></p>
+   </div>
 </body>
 </html>

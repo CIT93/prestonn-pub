@@ -1,26 +1,25 @@
+// step 1 select the elements using querySelectorAll for the radios
+const qtyInput = document.getElementById('qty');
+const giftWrapCheckbox = document.getElementById('gift-wrap');
+const sizeRadios = document.querySelectorAll('input[name="size"]');
 
-const orderForm = document.getElementById('order-form'); // Query Selector functions
-const qtyInput = orderForm.querySelector('#qty');
-const giftWrapCheckbox = orderForm.querySelector('#gift-wrap');
-const sizeRadioButtons = orderForm.querySelectorAll('input[name="size"]');
-
-const getSelectedRadioValue = function(radioButtons) { // creates a helper function. Also writes a function to figure out which size radio button is checked
+// Helper function:
+const getSelectedRadioValue = function (radioButtons) {
     for (const radio of radioButtons) {
         if (radio.checked) {
-        console.log(`${radio.value} is ${radio.checked}`);
-        return radio.value;
+            return radio.value;
         }
     }
 };
 
-export const getOrderInputs = function() { // creates and exports a function
-    console.log('getOrderInputs is running');
-    const orderFormSelections = {
-        qtyInputSelection: parseInt(qtyInput.value),
-        giftWrapCheckboxSelection: giftWrapCheckbox.checked,
-        sizeRadioButtonsSelection: getSelectedRadioValue(sizeRadioButtons)
-    };
+export const getFormInputs = function () { 
+    console.log('Getting order inputs...');
 
-    console.log('getOrderInputs');
-    return orderFormSelections;
+    const selectedSize = getSelectedRadioValue(sizeRadios);
+
+    return {
+        qty: parseInt(qtyInput.value),
+        size: selectedSize,
+        giftWrap: giftWrapCheckbox.checked
+    };
 };
