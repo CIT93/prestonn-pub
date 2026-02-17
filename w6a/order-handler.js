@@ -1,4 +1,5 @@
 // step 1 select the elements using querySelectorAll for the radios
+const orderForm = document.getElementById("order-form");
 const qtyInput = document.getElementById('qty');
 const giftWrapCheckbox = document.getElementById('gift-wrap');
 const sizeRadios = document.querySelectorAll('input[name="size"]');
