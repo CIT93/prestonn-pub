@@ -1,0 +1,20 @@
+body {
+    font-family: "Courier New", monospace; 
+    color: #54226b;
+}
+
+h1 {
+    color: #a31c30;
+}
+
+p {
+    line-height: 1.6;
+}
+.container {
+   max-width: 800px;
+   margin: 0 auto; /* Center the content */
+   padding: 15px;
+   background-color: #c70f0f;
+   box-shadow: 0 2px 5px rgba(64, 79, 80, 0.1);
+   border-radius: 8px;
+}
