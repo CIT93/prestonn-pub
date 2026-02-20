@@ -1,22 +1,17 @@
 import * as orderHandler from './order-handler.js';
 import * as priceCalculator from './price-calculator.js';
-import * as resultsDisplay from './results-display.js'; 
+// import * as resultsDisplay from './results-display.js'; Old code from this file remains, noted out.
 import * as orderStorage from './order-storage.js';
+import * as orderList from './order-list.js';
 
 const orderForm = document.getElementById('order-form');
-const summaryDiv = document.getElementById('order-summary');
-
-const orders = []; // Empty array to store all orders
+const orders = []; 
 const handleOrderSubmit = function (event) {
     event.preventDefault();
 
-    const orderData = orderHandler.getFormInputs(); // form data from the handler
-    console.log(orderData);
-
-    const calculatedPrice = priceCalculator.calculateTotal(orderData); // Calculate the price
-
-    
-    const newOrder = { // Marging operator uses this
+    const orderData = orderHandler.getFormInputs(); 
+    const calculatedPrice = priceCalculator.calculateTotal(orderData); 
+    const newOrder = { 
         ...orderData,
         ...calculatedPrice,
         timestamp: new Date().toISOString()
@@ -24,7 +19,9 @@ const handleOrderSubmit = function (event) {
 
     orders.push(newOrder);
     orderStorage.savedOrder(orders);
-    resultsDisplay.displayOrder(newOrder);
+    orderList.renderOrders(orders); 
+
+    // resultsDisplay.displayOrder(newOrder);
 };
 
 const init = function () {
@@ -32,6 +29,7 @@ const init = function () {
 
     if (loadedOrders.length > 0) {
         orders.push(...loadedOrders);
+        orderList.renderOrders(orders);
         console.log("Orders loaded", orders);
     }
 
