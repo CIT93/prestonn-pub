@@ -60,8 +60,6 @@ const handleFormSubmit = function(event) {
         onDelete: handleDeleteEntry,
         onEdit: handleEditEntry
     });
-    
-    formHandler.clearForm();
     resetAllUIStates();
 };
 
