@@ -120,31 +120,28 @@ const createTableRow = function(entry) {
 // Main function to render the table with the given carbon footprint entries.
 
 export const renderTable = function(entries, callbacks) {
-    // Loop through each sorted entry and create a table row for it.
     footprintTableBody.innerHTML = '';
     _currentCallbacks = callbacks;
+    
     if(entries.length === 0) {
         footprintTable.style.display = 'none';
         noEntriesMessage.style.display = 'block';
         clearAllDataButton.style.display = 'none'; 
-        console.log('No entries to display Table hidden');
-        return; // stops the function here
+        return; 
     } else {
         footprintTable.style.display = 'table';
         noEntriesMessage.style.display = 'none';
         clearAllDataButton.style.display = 'block'; 
-    }
-
+    };
     const sortedEntries = [...entries].sort(function(a, b){
-        return new Date(b.timestamp) - new Date(a.timestamp)
-    }); 
+        return new Date(a.timestamp) - new Date(b.timestamp); 
 
     for(const entry of sortedEntries) {
         const rowElement = createTableRow(entry);
         footprintTableBody.appendChild(rowElement);
     };
+}
 
-};
 const handleTableClick = function (event) {
     const target = event.target;
     const id = target.dataset.id;
