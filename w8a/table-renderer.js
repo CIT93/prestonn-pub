@@ -122,25 +122,25 @@ const createTableRow = function(entry) {
 export const renderTable = function(entries, callbacks) {
     footprintTableBody.innerHTML = '';
     _currentCallbacks = callbacks;
-    
     if(entries.length === 0) {
         footprintTable.style.display = 'none';
         noEntriesMessage.style.display = 'block';
         clearAllDataButton.style.display = 'none'; 
-        return; 
+        console.log('No entries to display Table hidden');
+        return;
     } else {
         footprintTable.style.display = 'table';
         noEntriesMessage.style.display = 'none';
         clearAllDataButton.style.display = 'block'; 
     };
     const sortedEntries = [...entries].sort(function(a, b){
-        return new Date(a.timestamp) - new Date(b.timestamp); 
-
+        return new Date(b.timestamp) - new Date(a.timestamp)
+    }); 
     for(const entry of sortedEntries) {
         const rowElement = createTableRow(entry);
         footprintTableBody.appendChild(rowElement);
     };
-}
+};
 
 const handleTableClick = function (event) {
     const target = event.target;
