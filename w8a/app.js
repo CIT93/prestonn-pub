@@ -44,18 +44,14 @@ const resetAllUIStates = function() {
 const handleFormSubmit = function(event) {
     event.preventDefault();
     const formData = formHandler.getFormInputs();
-
-    // CHALLENGE 2: Reference Error
-    // I renamed the function call slightly. Will the browser find it?
-    const calculatedResults = calculator.runCalculation(formData); 
+    const calculatedResults = calculator.calculateFootprint(formData);
 
     const newEntry = {
         ...formData,
         ...calculatedResults,
         id: storage.generateUniqueId(),
         timestamp: new Date().toISOString(),
-    }
-
+    };
     carbonFootprintEntries.push(newEntry);
     storage.saveEntries(carbonFootprintEntries);
 
@@ -64,9 +60,10 @@ const handleFormSubmit = function(event) {
         onDelete: handleDeleteEntry,
         onEdit: handleEditEntry
     });
+    
+    formHandler.clearForm();
     resetAllUIStates();
-} // CHALLENGE 1: Syntax Error 
-// (I've removed something vital right around here. Check your brackets!)
+};
 
 const performClearAllData = function() {
     carbonFootprintEntries.length = 0;
