@@ -5,7 +5,7 @@
 
 const carbonFootprintForm = document.getElementById('carbonFootprintForm'); // Get a reference to the main form element by its ID
 
-const householdMembersInput = carbonFootprintForm.querySelector('#householdMember');; // Using form.querySelector() is good practice for elements inside a specific parent (our form)
+const householdMembersInput = carbonFootprintForm.querySelector('#householdMembers'); // Using form.querySelector() is good practice for elements inside a specific parent (our form)
 
 const homeSquareFootageInput = carbonFootprintForm.querySelector('#homeSquareFootage'); // Home Size Reference
 
@@ -29,12 +29,11 @@ for(const radio of radioButtons) {;
 // @returns {Object} An object containing all the collected input values.
 
 export const getFormInputs = function () {
-    console.log('Get Form Inputs');
+console.log('Get Form Inputs');
 
     return {
 
-        householdMembers: parseInt(householdMembersInput.value) || 1, 
-        
+        householdMembers: parseInt(householdMembersInput.value) || 1,
         homeSquareFootage: parseInt(homeSquareFootageInput.value) || 0,
         isApartment: isApartmentInput.checked,
         dietType: getSelectedRadioValue(dietTypeRadios),
@@ -42,13 +41,11 @@ export const getFormInputs = function () {
     }
 };
 
-export const clearForm = function () {
+export const clearForm = function () {;
     carbonFootprintForm.reset();  
-
     householdMembersInput.value = 1; 
-    
     homeSquareFootageInput.value = 0;
-    dietTypeRadios[0].checked = true;
-    foodPackagingRadios[0].checked = true;
+    dietTypeRadios[0].checked;
+    foodPackagingRadios[0].checked;
     console.log('Clear Form');
 }
