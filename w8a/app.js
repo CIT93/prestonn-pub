@@ -45,7 +45,9 @@ const handleFormSubmit = function(event) {
     event.preventDefault();
     const formData = formHandler.getFormInputs();
 
-    const calculatedResults = calculator.calculateFootprint(formData);
+    // CHALLENGE 2: Reference Error
+    // I renamed the function call slightly. Will the browser find it?
+    const calculatedResults = calculator.runCalculation(formData); 
 
     const newEntry = {
         ...formData,
@@ -63,8 +65,8 @@ const handleFormSubmit = function(event) {
         onEdit: handleEditEntry
     });
     resetAllUIStates();
-
-}
+} // CHALLENGE 1: Syntax Error 
+// (I've removed something vital right around here. Check your brackets!)
 
 const performClearAllData = function() {
     carbonFootprintEntries.length = 0;
