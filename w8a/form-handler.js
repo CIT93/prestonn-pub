@@ -5,7 +5,7 @@
 
 const carbonFootprintForm = document.getElementById('carbonFootprintForm'); // Get a reference to the main form element by its ID
 
-const householdMembersInput = carbonFootprintForm.querySelector('#householdMembers'); // Using form.querySelector() is good practice for elements inside a specific parent (our form)
+const householdMembersInput = carbonFootprintForm.querySelector('#householdMember');; // Using form.querySelector() is good practice for elements inside a specific parent (our form)
 
 const homeSquareFootageInput = carbonFootprintForm.querySelector('#homeSquareFootage'); // Home Size Reference
 
@@ -28,36 +28,27 @@ for(const radio of radioButtons) {;
 // An Array is a list of items array[index]
 // @returns {Object} An object containing all the collected input values.
 
-
 export const getFormInputs = function () {
-console.log('Get Form Inputs');
-// const homeSquareFootage = parseInt(homeSquareFootageInput.value) || 0;
-// const isApartment = isApartmentInput.checked 
-
-// const objLiteral = {
-//     houseHoldMembers: parseInt (householdMembersInput.value) || 1,
-//     homeSquareFootage: parseInt(homeSquareFootageInput.value) || 0,
-//     isApartment : isApartmentInput.checked
-// }
-
-// Loop over the node list to find what button was checked (clicked)
+    console.log('Get Form Inputs');
 
     return {
 
-        householdMembers: parseInt(householdMembersInput.value) || 1,
+        householdMembers: parseInt(householdMembersInput.value) || 1, 
+        
         homeSquareFootage: parseInt(homeSquareFootageInput.value) || 0,
         isApartment: isApartmentInput.checked,
         dietType: getSelectedRadioValue(dietTypeRadios),
         foodPackaging: getSelectedRadioValue(foodPackagingRadios)
     }
-
 };
 
-export const clearForm = function () {;
-    carbonFootprintForm.reset();  // Built in browser function that resets all form fields
-    householdMembersInput.value = 1; // Ensures the default value for 'householdMembers' is 1
+export const clearForm = function () {
+    carbonFootprintForm.reset();  
+
+    householdMembersInput.value = 1; 
+    
     homeSquareFootageInput.value = 0;
-    dietTypeRadios[0].checked;
-    foodPackagingRadios[0].checked;
+    dietTypeRadios[0].checked = true;
+    foodPackagingRadios[0].checked = true;
     console.log('Clear Form');
 }
