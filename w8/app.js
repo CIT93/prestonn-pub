@@ -17,6 +17,7 @@ const handleOrderSubmit = function (event) {
 
     
     const newOrder = { // Marging operator uses this
+        id: Date.now().toString(),
         ...orderData,
         ...calculatedPrice,
         timestamp: new Date().toISOString()
