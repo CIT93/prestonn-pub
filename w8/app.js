@@ -20,10 +20,21 @@ const handleOrderSubmit = function (event) {
 
     orders.push(newOrder);
     orderStorage.savedOrder(orders);
-    orderList.renderOrders(orders); 
-
+    orderList.renderOrders(orders, {
+    onDelete: handleDelete,
+    onEdit: handleEdit
+});
     // resultsDisplay.displayOrder(newOrder);
 };
+
+const handleDelete = function(id) {
+    console.log("App.js: Requesting delete for order", id);
+};
+
+const handleEdit = function(id) {
+    console.log("App.js: Requesting edit for order", id);
+};
+
 
 const init = function () {
     const loadedOrders = orderStorage.ordersData();

@@ -1,3 +1,5 @@
+let moduleCallbacks = {};
+
 const tbody = document.getElementById('order-table-body');
 const formatDateForDisplay = function(timestamp) {
     const date = new Date(timestamp);
@@ -22,25 +24,35 @@ row.innerHTML = `
     return row;
 };
 
-const tableBody = document.getElementById('order-table-body');
+tbody.addEventListener('click', function(event) {
 
-tableBody.addEventListener('click', function(event) {
     const target = event.target;
-    
-    // 1. Get the ID from the button that was clicked
     const id = target.dataset.id;
 
-    // 2. Guard Clause: If they clicked a row (white space) but NOT a button, 
-    // there will be no ID. So we stop the function immediately.
     if (!id) return;
 
-    // 3. Temporary Test: Log the ID to prove it works!
-    console.log("Clicked button with ID:", id); 
+    if (target.classList.contains('delete-btn')) {
+        if (moduleCallbacks.onDelete) {
+            moduleCallbacks.onDelete(id);
+        }
+    }
+
+    if (target.classList.contains('edit-btn')) {
+        if (moduleCallbacks.onEdit) {
+            moduleCallbacks.onEdit(id);
+        }
+    }
 });
 
-export const renderOrders = function(orders) {
+export const renderOrders = function(orders, callbacks) {
+    // Save callbacks only if they are provided
+    if (callbacks) {
+        moduleCallbacks = callbacks;
+    }
+
     tbody.innerHTML = '';
-    console.log('Inside renderOrders: updating order history');
+    console.log('Inside renderOrders updating order history');
+    
     for (const order of orders) {
         const rowElement = createOrderRow(order);
         tbody.appendChild(rowElement);
