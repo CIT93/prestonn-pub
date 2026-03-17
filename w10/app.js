@@ -66,7 +66,7 @@ const handleFormSubmit = function(event) {
 const performClearAllData = function() {
     carbonFootprintEntries.length = 0;
     console.log("In-Memory array cleared:", carbonFootprintEntries);
-    storage.clearAllEntries
+    storage.clearAllEntries()
     tableRenderer.renderTable(carbonFootprintEntries, {
         onDelete: handleDeleteEntry,
         onEdit: handleEditEntry
@@ -87,27 +87,31 @@ const handleClearForm = function () {
 // Handles the Delete button
 const handleDeleteEntry = function(id) {
     console.log(`Delete button clicked for ID: ${id} functionality added in week 7.1`);
-    const indexToDelete = carbonFootprintEntries.findIndex(function(entry){
+    const indexToDelete = carbonFootprintEntries.findIndex(function(entry) {
         return entry.id === id;
     });
-    if(indexToDelete !== -1) {
+    if (indexToDelete !== -1) {
         carbonFootprintEntries.splice(indexToDelete, 1);
         console.log(`Entry removed from memory`);
+
         storage.saveEntries(carbonFootprintEntries);
+
         tableRenderer.renderTable(carbonFootprintEntries, {
             onDelete: handleDeleteEntry,
             onEdit: handleEditEntry
         });
-        if(carbonFootprintEntries.length === 0){
+
+        if (carbonFootprintEntries.length === 0) {
             resultsDisplay.hideResults();
             formHandler.clearForm();
         }
+        
         resetAllUIStates();
     } else {
-        console.log('Did not find index')
+        console.log('Did not find index');
         resetAllUIStates();
     }
-}
+};
 // Handles the Edit button
 const handleEditEntry = function(id) {
     console.log(`Edit button clicked for ID: ${id} functionality added in week 7.1`);
