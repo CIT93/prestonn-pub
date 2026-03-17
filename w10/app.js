@@ -6,25 +6,48 @@ import * as orderList from './order-list.js';
 
 const orderForm = document.getElementById('order-form');
 const orders = []; 
+
 const handleOrderSubmit = function (event) {
     event.preventDefault();
 
     const orderData = orderHandler.getFormInputs(); 
     const calculatedPrice = priceCalculator.calculateTotal(orderData); 
-    const newOrder = { 
-        id: Date.now().toString(),
+    const entryToSave = {
         ...orderData,
-        ...calculatedPrice,
-        timestamp: new Date().toISOString()
+        ...calculatedPrice
     };
 
-    orders.push(newOrder);
+    const orderId = document.getElementById('order-id').value;
+    if (orderId) {
+        const index = orders.findIndex(function(order) {
+            return order.id === orderId;
+        });
+
+        if (index !== -1) {
+            entryToSave.id = orderId;
+            entryToSave.timestamp = orders[index].timestamp;
+            orders[index] = entryToSave;
+            console.log(`Order ${orderId} updated successfully.`);
+        } else {
+            console.warn(`Attempted to update order with id ${orderId}, but it was not found.`);
+            entryToSave.id = Date.now().toString();
+            entryToSave.timestamp = new Date().toISOString();
+            orders.push(entryToSave);
+        }
+    } else {
+        entryToSave.id = Date.now().toString();
+        entryToSave.timestamp = new Date().toISOString();
+        orders.push(entryToSave);
+        console.log("New order created.");
+    }
     orderStorage.savedOrder(orders);
+    
     orderList.renderOrders(orders, {
-    onDelete: handleDelete,
-    onEdit: handleEdit
-});
-    // resultsDisplay.displayOrder(newOrder);
+        onDelete: handleDelete,
+        onEdit: handleEdit
+    });
+    document.getElementById('order-id').value = ''; 
+    orderForm.reset(); 
 };
 
 const handleDelete = function(id) {
