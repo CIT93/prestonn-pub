@@ -29,6 +29,20 @@ const handleOrderSubmit = function (event) {
 
 const handleDelete = function(id) {
     console.log("App.js: Requesting delete for order", id);
+    const index = orders.findIndex(order => order.id === id);
+
+    if (index !== -1) {
+        orders.splice(index, 1);
+        orderStorage.savedOrder(orders);
+        orderList.renderOrders(orders, {
+            onDelete: handleDelete,
+            onEdit: handleEdit
+        });
+        
+        console.log(`Order ${id} deleted successfully.`);
+    } else {
+        console.warn(`Order ${id} not found.`);
+    }
 };
 
 const handleEdit = function(id) {
