@@ -47,6 +47,25 @@ const handleDelete = function(id) {
 
 const handleEdit = function(id) {
     console.log("App.js: Requesting edit for order", id);
+const entryToEdit = orders.find(function(order) {
+    return order.id === id;
+});
+
+if (entryToEdit) {
+        document.getElementById('qty').value = entryToEdit.qty;
+        document.getElementById('gift-wrap').checked = entryToEdit.giftWrap;
+        document.getElementById('order-id').value = entryToEdit.id;
+
+        const sizeRadios = document.getElementsByName('size');
+        for (const radio of sizeRadios) {
+            if (radio.value === entryToEdit.size) {
+                radio.checked = true;
+            }
+        }
+
+        window.scrollTo({top: 0, behavior: 'smooth'});
+        console.log(`Editing entry id ${id} form populated`);
+    }
 };
 
 
